@@ -6,28 +6,31 @@ import me.dio.sacola.model.Item;
 import me.dio.sacola.model.Sacola;
 import me.dio.sacola.resource.dto.ItemDto;
 import me.dio.sacola.service.SacolaService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
-@RequestMapping("/ifodd-devweek/sacolas")
+@RequestMapping("/ifood-devweek/sacolas")
 @RequiredArgsConstructor
 public class SacolaResource {
 
     private final SacolaService sacolaService;
 
     @PostMapping
-    public Item incluirItemSacola(ItemDto itemDto){
-        return sacolaService.incluirItemSacola(itemDto);
+    public ResponseEntity<Item>  incluirItemSacola(ItemDto itemDto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(sacolaService.incluirItemSacola(itemDto));
     }
 
     @GetMapping("/{id}")
-    public Sacola verSacola(Long id){
-        return sacolaService.verSacola(id);
+    public ResponseEntity<Sacola> verSacola(Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(sacolaService.verSacola(id));
     }
 
     @PutMapping("/fecharSacola/{sacolaId}")
-    public Sacola fecharSacola(@PathVariable("sacolaId") Long sacolaId,
+    public ResponseEntity<Sacola> fecharSacola(@PathVariable("sacolaId") Long sacolaId,
                                @RequestParam("formaPagamento") int formaPagamento){
-        return sacolaService.fecharSacola(sacolaId,formaPagamento);
+        return ResponseEntity.status(HttpStatus.OK).body(sacolaService.fecharSacola(sacolaId,formaPagamento));
     }
 }
