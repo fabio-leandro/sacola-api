@@ -4,6 +4,10 @@
 
 Java 17, Gradle, SpringBoot, SpringData, Lombok, Banco de Dados H2, Postman, Documentação com Swagger.
 
+##### Objetivo:
+
+Ifood DevWeek.
+
 ##### Mentora: 
 
 https://github.com/cami-la
